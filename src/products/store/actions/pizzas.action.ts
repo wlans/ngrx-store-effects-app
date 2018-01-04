@@ -21,4 +21,4 @@ export class LoadPizzasSuccess implements Action {
 }
 
 // Actions Type
-export type PizzasAction = LoadPizzas | LoadPizzasFail | LoadPizzasSuccess;
+export type PizzasActions = LoadPizzas | LoadPizzasFail | LoadPizzasSuccess;

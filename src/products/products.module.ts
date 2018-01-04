@@ -4,10 +4,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-// components
+import { StoreModule } from '@ngrx/store';
+
+import { reducers } from './store';
+
+// components are dumb
 import * as fromComponents from './components';
 
-// containers
+// containers are smart
 import * as fromContainers from './containers';
 
 // services
@@ -17,16 +21,16 @@ import * as fromServices from './services';
 export const ROUTES: Routes = [
   {
     path: '',
-    component: fromContainers.ProductsComponent,
+    component: fromContainers.ProductsComponent
   },
   {
     path: ':id',
-    component: fromContainers.ProductItemComponent,
+    component: fromContainers.ProductItemComponent
   },
   {
     path: 'new',
-    component: fromContainers.ProductItemComponent,
-  },
+    component: fromContainers.ProductItemComponent
+  }
 ];
 
 @NgModule({
@@ -35,9 +39,10 @@ export const ROUTES: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forChild(ROUTES),
+    StoreModule.forFeature('products', reducers)
   ],
   providers: [...fromServices.services],
   declarations: [...fromContainers.containers, ...fromComponents.components],
-  exports: [...fromContainers.containers, ...fromComponents.components],
+  exports: [...fromContainers.containers, ...fromComponents.components]
 })
 export class ProductsModule {}
