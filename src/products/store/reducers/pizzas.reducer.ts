@@ -1,14 +1,15 @@
 import { Pizza } from '../../models/pizza.model';
 import * as fromPizzas from '../actions/pizzas.action';
 
+//http://extension.remotedev.io/
 export interface PizzaState {
-  data: Pizza[];
+  entities: { [id: number]: Pizza };
   loaded: boolean;
   loading: boolean;
 }
 
 export const initialState: PizzaState = {
-  data: [],
+  entities: {},
   loaded: false,
   loading: false
 };
@@ -26,12 +27,23 @@ export function reducer(
     }
     case fromPizzas.LOAD_PIZZAS_SUCCESS: {
       //console.log(action.payload);
-      const data = action.payload;
+      const pizzas = action.payload;
+      const entities = pizzas.reduce(
+        (entities: { [id: number]: Pizza }, pizza: Pizza) => {
+          return {
+            ...entities,
+            [pizza.id]: pizza
+          };
+        },
+        {
+          ...state.entities
+        }
+      );
       return {
         ...state,
         loading: false,
         loaded: true,
-        data
+        entities
       };
     }
 
@@ -48,4 +60,4 @@ export function reducer(
 
 export const getPizzaLoading = (state: PizzaState) => state.loading;
 export const getPizzaLoaded = (state: PizzaState) => state.loaded;
-export const getPizzas = (state: PizzaState) => state.data;
+export const getPizzasEntities = (state: PizzaState) => state.entities;

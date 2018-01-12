@@ -3,7 +3,7 @@ import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
 import * as fromPizzas from './pizzas.reducer';
 import { get } from 'https';
 import { createSelector } from '@ngrx/store/src/selector';
-import { getPizzas } from './pizzas.reducer';
+import { getPizzasEntities } from './pizzas.reducer';
 import { PizzasService } from 'src/products/services';
 
 export interface ProductsState {
@@ -37,7 +37,7 @@ export const getPizzasState = createSelector(
 
 export const getAllPizzas = createSelector(
   getPizzasState,
-  fromPizzas.getPizzas
+  fromPizzas.getPizzasEntities
 );
 
 export const getPizzasLoaded = createSelector(
