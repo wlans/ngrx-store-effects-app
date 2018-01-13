@@ -28,10 +28,12 @@ export function reducer(
     case fromPizzas.LOAD_PIZZAS_SUCCESS: {
       //console.log(action.payload);
       const pizzas = action.payload;
+      // reduce takes each element in the array and does the following function to it
       const entities = pizzas.reduce(
         (entities: { [id: number]: Pizza }, pizza: Pizza) => {
           return {
             ...entities,
+            // this sets something like this id: 1 , Pizza Object
             [pizza.id]: pizza
           };
         },
