@@ -44,7 +44,7 @@ export const ROUTES: Routes = [
     RouterModule.forRoot(ROUTES),
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([]),
-    StoreRouterConnectingModule, // this  uses a RouterStateSerialzer but we are overridding it in the providers with the CustomSerialzer class
+    StoreRouterConnectingModule, // this  uses a RouterStateSerialzer but we are overriding it in the providers with the CustomSerialzer class
     environment.development ? StoreDevtoolsModule.instrument() : []
   ],
   providers: [{ provide: RouterStateSerializer, useClass: CustomSerialzer }],

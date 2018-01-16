@@ -20,7 +20,7 @@ export interface State {
   routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
 }
 
-// setting up reducers
+// setting up reducers, we then register these in the products module
 export const reducers: ActionReducerMap<State> = {
   routerReducer: fromRouter.routerReducer
 };
