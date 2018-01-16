@@ -1,18 +1,18 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
-import * as fromStore from '../../store';
+import { Store } from "@ngrx/store";
+import { Observable } from "rxjs/Observable";
+import * as fromStore from "../../store";
 
-import { Pizza } from '../../models/pizza.model';
+import { Pizza } from "../../models/pizza.model";
 
-import { Topping } from '../../models/topping.model';
+import { Topping } from "../../models/topping.model";
 
 // down here V the async pipe subscribes to pizza$ without subscribing in the ts component file
 // when you pass it an observable it does this automatically. It also will unsubscibe so no ngondestroy is needed
 @Component({
-  selector: 'product-item',
-  styleUrls: ['product-item.component.scss'],
+  selector: "product-item",
+  styleUrls: ["product-item.component.scss"],
   template: `
     <div
       class="product-item">
@@ -40,6 +40,7 @@ export class ProductItemComponent implements OnInit {
   // if a refresh is done at the moment of this commit, the pizza info will disappear but we will be adding route guards to make sure
   // the pizza is loaded before we show it....
   ngOnInit() {
+    this.store.dispatch(new fromStore.LoadToppings());
     this.pizza$ = this.store.select(fromStore.getSelectedPizza);
   }
 
@@ -50,7 +51,7 @@ export class ProductItemComponent implements OnInit {
   onUpdate(event: Pizza) {}
 
   onRemove(event: Pizza) {
-    const remove = window.confirm('Are you sure?');
+    const remove = window.confirm("Are you sure?");
     if (remove) {
     }
   }
