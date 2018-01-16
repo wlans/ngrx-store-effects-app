@@ -22,7 +22,7 @@ export const getSelectedPizza = createSelector(
   getPizzasEntities, // feature state
   fromRoot.getRouterState, // root state
   (entities, router): Pizza => {
-    // returns us a pizza item
+    // returns us a pizza item if router is not null
     return router.state && entities[router.state.params.pizzaId];
   }
 );
