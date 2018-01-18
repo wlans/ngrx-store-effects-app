@@ -1,15 +1,19 @@
-import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
+import { ActionReducerMap, createFeatureSelector } from "@ngrx/store";
 
-import * as fromPizzas from './pizzas.reducer';
-import { get } from 'https';
-import { PizzasService } from 'src/products/services';
+import * as fromPizzas from "./pizzas.reducer";
+import * as fromToppings from "./toppings.reducer";
+
+import { get } from "https";
+import { PizzasService } from "src/products/services";
 
 export interface ProductsState {
   pizzas: fromPizzas.PizzaState;
+  toppings: fromToppings.ToppingsState;
 }
 // Actions ReducerMap.... this is where give the reducer and type them
 export const reducers: ActionReducerMap<ProductsState> = {
-  pizzas: fromPizzas.reducer
+  pizzas: fromPizzas.reducer,
+  toppings: fromToppings.reducer
 }; // Selectors ask for diffrent data at different levels IE:
 
 //  selectors allow you to seperate state with componet trees
@@ -23,5 +27,5 @@ export const reducers: ActionReducerMap<ProductsState> = {
 
 // this gets set up in products module
 export const getProductsState = createFeatureSelector<ProductsState>(
-  'products'
+  "products"
 );

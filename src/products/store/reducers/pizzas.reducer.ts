@@ -1,5 +1,5 @@
-import { Pizza } from '../../models/pizza.model';
-import * as fromPizzas from '../actions/pizzas.action';
+import { Pizza } from "../../models/pizza.model";
+import * as fromPizzas from "../actions/pizzas.action";
 
 //http://extension.remotedev.io/
 export interface PizzaState {
@@ -31,9 +31,10 @@ export function reducer(
       // reduce takes each element in the array and does the following function to it
       const entities = pizzas.reduce(
         (entities: { [id: number]: Pizza }, pizza: Pizza) => {
+          // this is the 2nd value for reduce method like a for each it is the current value of the iteration
           return {
-            ...entities,
-            // this sets something like this id: 1 , Pizza Object
+            ...entities, // take what we have already
+            // this sets something like this id: 1 , Pizza Object/ and put this in it
             [pizza.id]: pizza
           };
         },
