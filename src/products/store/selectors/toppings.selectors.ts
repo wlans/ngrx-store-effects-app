@@ -15,7 +15,7 @@ export const getToppingEntites = createSelector(
   getToppingsState,
   fromToppings.getToppingEntities
 );
-// TODO understtand what map is doing here
+// TODO understtand what map is doing here// map is going over an array of object keys and making a new array
 export const getAllToppings = createSelector(getToppingEntites, entities => {
   return Object.keys(entities).map(id => entities[parseInt(id, 10)]);
 });
