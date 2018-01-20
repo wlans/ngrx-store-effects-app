@@ -1,10 +1,12 @@
-import { Pizza } from './../../models/pizza.model';
+import { Pizza } from '../../models/pizza.model';
 import { createSelector } from '@ngrx/store';
 
 import * as fromRoot from '../../../app/store';
 import * as fromFeature from '../reducers'; // same as getting from reducers/index cause that
 //is where we export everythig we need
 import * as fromPizzas from '../reducers/pizzas.reducer';
+import * as fromToppings from './toppings.selectors';
+import { Topping } from '../../models/topping.model';
 
 // Pizza State
 
@@ -24,6 +26,19 @@ export const getSelectedPizza = createSelector(
   (entities, router): Pizza => {
     // returns us a pizza item if router is not null
     return router.state && entities[router.state.params.pizzaId];
+  }
+);
+
+// you can have as many selectors as you want and then push them into a function
+export const getPizzaVisualized = createSelector(
+  getSelectedPizza,
+  fromToppings.getToppingEntites,
+  fromToppings.getselectedToppings,
+  (pizza, toppingEntities, selectedToppings) => {
+    // we have 3 piece of state here now
+    // returns a Topping array
+    const toppings: Topping[] = selectedToppings.map(id => toppingEntities[id]);
+    return { ...pizza, toppings };
   }
 );
 
