@@ -6,7 +6,8 @@ export interface ToppingsState {
   loaded: boolean;
   loading: boolean;
   selectedToppings: number[]; // not sure why this state array which has to do with the toppings for the
-  // pizza is in the toppings state but going along with the flow for now
+  // pizza is in the toppings state but going along with the flow for now. Also sharing this state with other pizzas
+  // could be a problem if two windows are open. perhaps a selectedToppings should be per pizza and not shared..
 }
 
 export const initialState: ToppingsState = {

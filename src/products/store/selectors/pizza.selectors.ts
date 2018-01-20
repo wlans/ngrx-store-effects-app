@@ -38,6 +38,7 @@ export const getPizzaVisualized = createSelector(
     // we have 3 piece of state here now
     // returns a Topping array
     const toppings: Topping[] = selectedToppings.map(id => toppingEntities[id]);
+    // merges in the selected toppings with the  pizzas toppings via spread command . first time seeing this used outside reducers
     return { ...pizza, toppings };
   }
 );
