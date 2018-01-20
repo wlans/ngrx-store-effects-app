@@ -23,7 +23,7 @@ export class LoadToppingsSuccess implements Action {
   constructor(public payload: Topping[]) {}
 }
 
-//visualiz
+//visualize
 
 export class VisualizeToppings implements Action {
   readonly type = VISUALIZE_TOPPINGS;

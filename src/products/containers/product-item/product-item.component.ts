@@ -10,7 +10,7 @@ import { Pizza } from '../../models/pizza.model';
 import { Topping } from '../../models/topping.model';
 
 // down here V the async pipe subscribes to pizza$ without subscribing in the ts component file
-// when you pass it an observable it does this automatically. It also will unsubscibe so no ngondestroy is needed
+// when you pass it an observable it does this automatically. It also will unsubscribe so no ng on destroy is needed
 @Component({
   selector: 'product-item',
   styleUrls: ['product-item.component.scss'],
@@ -42,6 +42,7 @@ export class ProductItemComponent implements OnInit {
   // the pizza is loaded before we show it....
   ngOnInit() {
     this.pizza$ = this.store.select(fromStore.getSelectedPizza).pipe(
+      // there should be a better way of doing this
       tap((pizza: Pizza = null) => {
         //casting to an boolean...
         const pizzaExists = !!(pizza && pizza.toppings);
@@ -49,14 +50,15 @@ export class ProductItemComponent implements OnInit {
         const toppings = pizzaExists
           ? pizza.toppings.map(topping => topping.id)
           : [];
-        // visualize a pizza with its current toppings
+        // visualize a pizza with its current toppings by updating the state which are visualze object is watching and therefore to
+        // pizza is changed. this is more like update pizza toppings....
         this.store.dispatch(new fromStore.VisualizeToppings(toppings));
       })
     );
 
     this.toppings$ = this.store.select(fromStore.getAllToppings);
     // doing less state management in this class now. Still not 100% on this way of doing things and sharing the state for selectedPizzas
-
+    // this is using a selector and is subscribed to a selection of state which is what we are updating
     this.visualise$ = this.store.select(fromStore.getPizzaVisualized);
   }
 
@@ -66,6 +68,7 @@ export class ProductItemComponent implements OnInit {
     // this will get us a new pizza every time we dispatch. Our view is subscribed to an observable pizza
     // TODO is a store shared by diff windows in browser? So it looks like every new tab gets its own store... so maybe no problem here.
     // This does raise more questions about if sharing a store for diff tabs is a good idea or something you may want...
+    // this following dispatch updates the state which is then reflected in the view via observables
     this.store.dispatch(new fromStore.VisualizeToppings(event));
   }
 
