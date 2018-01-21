@@ -36,3 +36,5 @@ export const getToppingsLoading = createSelector(
   getToppingsState,
   fromToppings.getToppingsLoading
 );
+
+// all selectors get updated back the state that they watch has changed

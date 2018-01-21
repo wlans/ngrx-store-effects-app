@@ -1,5 +1,5 @@
-import { Pizza } from "../../models/pizza.model";
-import * as fromPizzas from "../actions/pizzas.action";
+import { Pizza } from '../../models/pizza.model';
+import * as fromPizzas from '../actions/pizzas.action';
 
 //http://extension.remotedev.io/
 export interface PizzaState {
@@ -56,6 +56,17 @@ export function reducer(
         loading: false,
         loaded: false
       };
+    }
+    case fromPizzas.CREATE_PIZZA_SUCCESS: {
+      const pizza = action.payload;
+      // not sure why we can't just merge this right into the state and have to merge the entities
+      const entities = {
+        ...state.entities,
+        entities: { [pizza.id]: pizza } // TODO comment this out and do the below TODO
+      };
+
+      return { ...state, entities };
+      // return { ...state, entities: { [pizza.id]: pizza } }; would this work? TODO try this out
     }
   }
   return state;

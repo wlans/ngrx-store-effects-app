@@ -71,8 +71,10 @@ export class ProductItemComponent implements OnInit {
     // this following dispatch updates the state which is then reflected in the view via observables
     this.store.dispatch(new fromStore.VisualizeToppings(event));
   }
-
-  onCreate(event: Pizza) {}
+  // process is create actions then bind to component
+  onCreate(event: Pizza) {
+    this.store.dispatch(new fromStore.CreatePizza(event));
+  }
 
   onUpdate(event: Pizza) {}
 

@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-import { Effect, Actions } from "@ngrx/effects";
-import { map, switchMap, catchError } from "rxjs/operators";
-import { of } from "rxjs/observable/of";
+import { Effect, Actions } from '@ngrx/effects';
+import { map, switchMap, catchError } from 'rxjs/operators';
+import { of } from 'rxjs/observable/of';
 
-import * as pizzaActions from "../actions/pizzas.action";
-import * as fromServices from "../../services";
+import * as pizzaActions from '../actions/pizzas.action';
+import * as fromServices from '../../services';
 
 @Injectable()
 export class PizzaEffects {
@@ -25,4 +25,21 @@ export class PizzaEffects {
       );
     })
   );
+
+  @Effect()
+  createPizza$ = this.actions$.ofType(pizzaActions.CREATE_PIZZA).pipe(
+    // we just want the payload from the action...
+    map((action: pizzaActions.CreatePizza) => action.payload),
+    switchMap(pizza => {
+      return this.pizzaService
+        .createPizza(pizza)
+        .pipe(
+          map(pizza => new pizzaActions.CreatePizzaSuccess(pizza)),
+          catchError(error => of(new pizzaActions.CreatePizzaFail(error)))
+        );
+    })
+  );
 }
+
+// all effects must return an action so they can dispatch it
+// http gives back an Observable
