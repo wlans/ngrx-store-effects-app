@@ -314,6 +314,28 @@
         }
       ],
       "id": 19
+    },
+    {
+      "name": "Test pizza",
+      "toppings": [
+        {
+          "id": 1,
+          "name": "anchovy"
+        },
+        {
+          "id": 2,
+          "name": "bacon"
+        },
+        {
+          "id": 6,
+          "name": "mushroom"
+        },
+        {
+          "id": 10,
+          "name": "pepperoni"
+        }
+      ],
+      "id": 20
     }
   ]
 }
