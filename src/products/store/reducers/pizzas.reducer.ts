@@ -70,6 +70,17 @@ export function reducer(
       return { ...state, entities };
       // return { ...state, entities: { [pizza.id]: pizza } }; would this work? TODO try this out
     }
+
+    case fromPizzas.REMOVE_PIZZA_SUCCESS: {
+      const pizza = action.payload;
+      const { [pizza.id]: removed, ...entitiesMinusRemoved } = state.entities;
+      const entities = entitiesMinusRemoved;
+      console.log(removed);
+      return {
+        ...state,
+        entities
+      };
+    }
   }
   return state;
 }

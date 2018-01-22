@@ -8,6 +8,7 @@ import * as fromStore from '../../store';
 import { Pizza } from '../../models/pizza.model';
 
 import { Topping } from '../../models/topping.model';
+import { RemovePizza } from '../../store';
 
 // down here V the async pipe subscribes to pizza$ without subscribing in the ts component file
 // when you pass it an observable it does this automatically. It also will unsubscribe so no ng on destroy is needed
@@ -83,6 +84,10 @@ export class ProductItemComponent implements OnInit {
   onRemove(event: Pizza) {
     const remove = window.confirm('Are you sure?');
     if (remove) {
+      this.store.dispatch(new RemovePizza(event));
     }
   }
 }
+
+// the container aka this talks to the store and send data to the presentation componets (top level data flow) which then use Event Mitter to pass data up.
+// for container inputs are from select and outputs are from dispatch

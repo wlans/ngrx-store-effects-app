@@ -39,9 +39,9 @@ export class PizzaEffects {
         );
     })
   );
-  
 
-  @Effect() updatePizza$ = this.actions$.ofType(pizzaActions.UPDATE_PIZZA).pipe(
+  @Effect()
+  updatePizza$ = this.actions$.ofType(pizzaActions.UPDATE_PIZZA).pipe(
     // we just want the payload from the action...
     map((action: pizzaActions.UpdatePizza) => action.payload),
     switchMap(pizza => {
@@ -52,7 +52,21 @@ export class PizzaEffects {
           catchError(error => of(new pizzaActions.UpdatePizzaFail(error)))
         );
     })
-  
+  );
+
+  @Effect()
+  removePizza$ = this.actions$.ofType(pizzaActions.REMOVE_PIZZA).pipe(
+    // we just want the payload from the action...
+    map((action: pizzaActions.RemovePizza) => action.payload),
+    switchMap(pizza => {
+      return this.pizzaService
+        .removePizza(pizza)
+        .pipe(
+          map(() => new pizzaActions.RemovePizzaSuccess(pizza)),
+          catchError(error => of(new pizzaActions.RemovePizzaFail(error)))
+        );
+    })
+  );
 }
 
 // all effects must return an action so they can dispatch it
