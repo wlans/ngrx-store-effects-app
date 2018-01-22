@@ -57,6 +57,8 @@ export function reducer(
         loaded: false
       };
     }
+    // / TODO how does this update a pizza?
+    case fromPizzas.UPDATE_PIZZA_SUCCESS: // this will fall throught to the next case
     case fromPizzas.CREATE_PIZZA_SUCCESS: {
       const pizza = action.payload;
       // not sure why we can't just merge this right into the state and have to merge the entities
