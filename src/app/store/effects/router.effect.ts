@@ -14,7 +14,7 @@ export class RouterEffects {
     private router: Router,
     private location: Location
   ) {}
-  // to do what is this doing. whats with the spread
+  // TODO what is this doing. whats with the spread
   @Effect({ dispatch: false }) // dispatch is false
   navigate$ = this.actions$.ofType(RouterActions.GO).pipe(
     map((action: RouterActions.Go) => action.payload),

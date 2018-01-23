@@ -20,12 +20,12 @@ export interface State {
   routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
 }
 
-// setting up reducers, we then register these in the products module
+// setting up reducers, we then register these in the products module // are you sure its not the app module?
 export const reducers: ActionReducerMap<State> = {
   routerReducer: fromRouter.routerReducer
 };
 
-// This sets up a state in the store. Lots of use generic types in here
+// This sets up a state in the store. Lots of use of generic types in here
 export const getRouterState = createFeatureSelector<
   fromRouter.RouterReducerState<RouterStateUrl>
 >('routerReducer');
