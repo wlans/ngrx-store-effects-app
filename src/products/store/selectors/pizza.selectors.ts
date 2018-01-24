@@ -22,10 +22,10 @@ export const getPizzasEntities = createSelector(
 
 export const getSelectedPizza = createSelector(
   getPizzasEntities, // feature state
-  fromRoot.getRouterState, // root state
+  fromRoot.getRouterState, // root state. What is the current url...
   (entities, router): Pizza => {
     // returns us a pizza item if router is not null
-    return router.state && entities[router.state.params.pizzaId];
+    return router.state && entities[router.state.params.pizzaId]; // pizzaaId was setup in the routes
   }
 );
 

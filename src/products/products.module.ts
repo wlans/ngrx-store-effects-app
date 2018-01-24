@@ -29,7 +29,7 @@ export const ROUTES: Routes = [
     component: fromContainers.ProductItemComponent
   },
   {
-    path: ':pizzaId',
+    path: ':pizzaId', // does the : mean param ? TODO
     component: fromContainers.ProductItemComponent
   }
 ];
@@ -40,7 +40,7 @@ export const ROUTES: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forChild(ROUTES),
-    StoreModule.forFeature('products', reducers),
+    StoreModule.forFeature('products', reducers), // this slice of state is for these reducers
     EffectsModule.forFeature(effects)
   ],
   providers: [...fromServices.services],

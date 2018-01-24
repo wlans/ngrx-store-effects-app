@@ -33,7 +33,7 @@ import * as fromStore from '../../store';
 })
 export class ProductsComponent implements OnInit {
   pizzas$: Observable<Pizza[]>;
-
+  // this gets injected in but I don't know how
   constructor(private store: Store<fromStore.ProductsState>) {}
 
   ngOnInit() {

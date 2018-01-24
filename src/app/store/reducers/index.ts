@@ -20,7 +20,7 @@ export interface State {
   routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
 }
 
-// setting up reducers, we then register these in the products module // are you sure its not the app module?
+// setting up reducers, we then register these in the app module (I had this as products at first but changed it to app modudle TODO double check) // are you sure its not the app module?
 export const reducers: ActionReducerMap<State> = {
   routerReducer: fromRouter.routerReducer
 };
@@ -43,7 +43,7 @@ export class CustomSerialzer
     let state: ActivatedRouteSnapshot = routerState.root;
     // we are getting the state from angular and binding it to our store. Hijacking and taking a few props to bind to ngrx store
     while (state.firstChild) {
-      state = state.firstChild;
+      state = state.firstChild; // this is how we get the params
     }
     const { params } = state; // same as doing const params = state.params
     return { url, queryParams, params };

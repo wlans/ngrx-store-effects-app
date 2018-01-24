@@ -7,7 +7,7 @@ import * as RouterActions from '../actions/router.action';
 
 import { tap, map } from 'rxjs/operators';
 
-@Injectable()
+@Injectable() // this is injectable
 export class RouterEffects {
   constructor(
     private actions$: Actions,
@@ -15,7 +15,7 @@ export class RouterEffects {
     private location: Location
   ) {}
   // TODO what is this doing. whats with the spread
-  @Effect({ dispatch: false }) // dispatch is false
+  @Effect({ dispatch: false }) // dispatch is false we don't want a new action
   navigate$ = this.actions$.ofType(RouterActions.GO).pipe(
     map((action: RouterActions.Go) => action.payload),
     tap(({ path, query: queryParams, extras }) => {
