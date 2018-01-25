@@ -9,7 +9,7 @@ import {
 } from '@ngrx/router-store';
 import { StoreModule, MetaReducer } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { reducers, effects, CustomSerialzer } from './store';
+import { reducers, effects, CustomSerializer } from './store';
 
 // not used in production
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -44,10 +44,10 @@ export const ROUTES: Routes = [
     RouterModule.forRoot(ROUTES),
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot(effects),
-    StoreRouterConnectingModule, // this  uses a RouterStateSerialzer but we are overriding it in the providers with the CustomSerialzer class
+    StoreRouterConnectingModule, // this  uses a RouterStateSerializer but we are overriding it in the providers with the CustomSerializer class
     environment.development ? StoreDevtoolsModule.instrument() : []
   ],
-  providers: [{ provide: RouterStateSerializer, useClass: CustomSerialzer }],
+  providers: [{ provide: RouterStateSerializer, useClass: CustomSerializer }],
   declarations: [AppComponent],
   bootstrap: [AppComponent]
 })

@@ -1,5 +1,5 @@
 import {
-  ActivatedRouteSnapshot,
+  ActivatedRouteSnapshot, // this is like version control of  ActivatedRouter
   RouterStateSnapshot,
   Params
 } from '@angular/router';
@@ -22,7 +22,7 @@ export interface State {
   routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
 }
 
-// setting up reducers, we then register these in the app module (I had this as products at first but changed it to app modudle TODO double check) // are you sure its not the app module?
+// setting up reducers, we then register these in the app module (I had this as products at first but changed it to app module TODO double check) // are you sure its not the app module?
 export const reducers: ActionReducerMap<State> = {
   routerReducer: fromRouter.routerReducer
 };
@@ -33,12 +33,12 @@ export const getRouterState = createFeatureSelector<
 >('routerReducer');
 
 // This object will be bound to our state tree
-// Anytime you naviagte or change url this function will be called
-export class CustomSerialzer
+// Anytime you navigate or change url this function will be called
+export class CustomSerializer
   implements fromRouter.RouterStateSerializer<RouterStateUrl> {
   // you can look into RouterStateSerializer and the Tree it implements for more url options
   serialize(routerState: RouterStateSnapshot): RouterStateUrl {
-    const { url } = routerState; // same as doing const url = routerState.url this is from ES6. desurturing an import ie
+    const { url } = routerState; // same as doing const url = routerState.url this is from ES6. destructuring an import ie
     // import { ActivatedRouteSnapshot,RouterStateSnapshot, Params } from '@angular/router';
     const { queryParams } = routerState.root; // same as doing const queryParam = routerState.root.queryParams
     // let makes this var lets you define vars in block scope and not function scope like var
