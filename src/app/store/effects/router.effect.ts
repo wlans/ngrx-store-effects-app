@@ -7,6 +7,8 @@ import * as RouterActions from '../actions/router.action';
 
 import { tap, map } from 'rxjs/operators';
 
+// here we are going navigation  stuff so go back and forward
+
 @Injectable() // this is injectable
 export class RouterEffects {
   constructor(

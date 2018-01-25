@@ -15,6 +15,8 @@ export interface RouterStateUrl {
   params: Params;
 }
 
+// these reducers are in charge of putting the current url into the store
+
 // the reducers in the state that we are controlling from here
 export interface State {
   routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;

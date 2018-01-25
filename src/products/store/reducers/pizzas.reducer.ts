@@ -61,21 +61,23 @@ export function reducer(
     case fromPizzas.UPDATE_PIZZA_SUCCESS: // this will fall throught to the next case
     case fromPizzas.CREATE_PIZZA_SUCCESS: {
       const pizza = action.payload;
-      // not sure why we can't just merge this right into the state and have to merge the entities
+      // TODO not sure why we can't just merge this right into the state and have to merge the entities
       const entities = {
         ...state.entities,
-        entities: { [pizza.id]: pizza } // TODO comment this out and do the below TODO
+        [pizza.id]: pizza // TODO comment this out and do the below TODO
       };
 
       return { ...state, entities };
-      // return { ...state, entities: { [pizza.id]: pizza } }; would this work? TODO try this out
+      //return { ...state, entities: { [pizza.id]: pizza } }; //would this work? TODO try this out. This removes everything in entities but this one pizza
     }
 
     case fromPizzas.REMOVE_PIZZA_SUCCESS: {
       const pizza = action.payload;
       const { [pizza.id]: removed, ...entitiesMinusRemoved } = state.entities;
-      const entities = entitiesMinusRemoved;
       console.log(removed);
+      console.log(entitiesMinusRemoved);
+      const entities = entitiesMinusRemoved;
+
       return {
         ...state,
         entities

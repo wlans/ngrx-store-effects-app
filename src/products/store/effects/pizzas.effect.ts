@@ -4,8 +4,13 @@ import { Effect, Actions } from '@ngrx/effects';
 import { map, switchMap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 
+// TODO look up how you could use a typescript path to get relative path easier
+// reason we use index ts is because it makes getting the exports easier. we would have to go further down the chain to get what we want
+import * as fromRoot from '../../../app/store';
+
 import * as pizzaActions from '../actions/pizzas.action';
 import * as fromServices from '../../services';
+import { CreatePizzaSuccess, REMOVE_PIZZA_SUCCESS } from 'src/products/store';
 
 @Injectable()
 export class PizzaEffects {
@@ -40,6 +45,18 @@ export class PizzaEffects {
     })
   );
 
+  //  reason for effects is to listen to events because they are side effects
+
+  @Effect()
+  createPizzaSuccess$ = this.actions$ // our reducer will pick this up first then this will get called
+    .ofType(pizzaActions.CREATE_PIZZA_SUCCESS)
+    .pipe(
+      map((action: pizzaActions.CreatePizzaSuccess) => action.payload),
+      map(pizza => {
+        return new fromRoot.Go({ path: ['/products', pizza.id] });
+      })
+    );
+
   @Effect()
   updatePizza$ = this.actions$.ofType(pizzaActions.UPDATE_PIZZA).pipe(
     // we just want the payload from the action...
@@ -67,7 +84,21 @@ export class PizzaEffects {
         );
     })
   );
-}
 
-// all effects must return an action so they can dispatch it
+  @Effect() // listening to two  actions....
+  handlePizzaSuccess$ = this.actions$
+    .ofType(
+      pizzaActions.UPDATE_PIZZA_SUCCESS,
+      pizzaActions.REMOVE_PIZZA_SUCCESS
+    )
+    .pipe(
+      map(pizza => {
+        return new fromRoot.Go({
+          path: ['/products']
+        });
+      })
+    );
+} // end of class
+
+// all effects must return an action so they can dispatch it unless dispatch is set to false
 // http gives back an Observable

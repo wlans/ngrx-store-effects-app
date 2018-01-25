@@ -3,7 +3,7 @@ import {
   Input,
   Output,
   EventEmitter,
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy
 } from '@angular/core';
 
 @Component({
@@ -22,7 +22,7 @@ import {
         </button>
       </a>
     </div>
-  `,
+  `
 })
 export class PizzaItemComponent {
   @Input() pizza: any;
