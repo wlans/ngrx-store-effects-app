@@ -37,9 +37,11 @@ export class ProductsComponent implements OnInit {
   constructor(private store: Store<fromStore.ProductsState>) {}
 
   ngOnInit() {
-    this.store.dispatch(new fromStore.LoadPizzas());
+    //this.store.dispatch(new fromStore.LoadPizzas());
+    this.pizzas$ = this.store.select(fromStore.getAllPizzas);
     // moving here so toppings are loaded and ready to go from here on out
     this.store.dispatch(new fromStore.LoadToppings());
-    this.pizzas$ = this.store.select(fromStore.getAllPizzas);
+
+    // if we refresh on a product item these won't get refreshed becasue there is no route guard at the moment
   }
 }
