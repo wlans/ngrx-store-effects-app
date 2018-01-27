@@ -38,10 +38,9 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     //this.store.dispatch(new fromStore.LoadPizzas());
+    // just binding a selector here no more dispatch
     this.pizzas$ = this.store.select(fromStore.getAllPizzas);
-    // moving here so toppings are loaded and ready to go from here on out
-    this.store.dispatch(new fromStore.LoadToppings());
-
-    // if we refresh on a product item these won't get refreshed becasue there is no route guard at the moment
   }
 }
+
+// if we refresh on a product item these won't get refreshed because there is no route guard at the moment// this is fixed now check products module

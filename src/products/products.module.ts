@@ -29,15 +29,17 @@ export const ROUTES: Routes = [
     path: '',
     canActivate: [fromGuards.PizzasGuard],
     component: fromContainers.ProductsComponent
+    // could have guard for children IE children  child route would init after these guards have been called
+    // canLoad handle lazy loading modules
   },
   {
     path: 'new',
-    canActivate: [fromGuards.PizzasGuard],
+    canActivate: [fromGuards.PizzasGuard, fromGuards.ToppingsGuard],
     component: fromContainers.ProductItemComponent
   },
   {
     path: ':pizzaId', // does the : mean param ? TODO
-    canActivate: [fromGuards.PizzaExistsGuards],
+    canActivate: [fromGuards.PizzaExistsGuards, fromGuards.ToppingsGuard],
     component: fromContainers.ProductItemComponent
   }
 ];
@@ -56,3 +58,5 @@ export const ROUTES: Routes = [
   exports: [...fromContainers.containers, ...fromComponents.components]
 })
 export class ProductsModule {}
+
+// moving here so toppings are loaded and ready to go from here on out when guard is hit

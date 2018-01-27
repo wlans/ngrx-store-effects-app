@@ -15,6 +15,7 @@ import { Pizza } from '../models/pizza.model';
 export class PizzaExistsGuards implements CanActivate {
   constructor(private store: Store<fromStore.ProductsState>) {}
 
+  // TODO this is throwing a router cancel right now and now redirect to where it should
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
     return this.checkStore().pipe(
       switchMap(() => {
