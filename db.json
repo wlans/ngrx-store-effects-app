@@ -92,10 +92,6 @@
           "name": "pepperoni"
         },
         {
-          "id": 2,
-          "name": "bacon"
-        },
-        {
           "id": 5,
           "name": "mozzarella"
         },
@@ -108,20 +104,12 @@
           "name": "sweetcorn"
         },
         {
-          "id": 3,
-          "name": "basil"
-        },
-        {
           "id": 8,
           "name": "onion"
         },
         {
           "id": 4,
           "name": "chili"
-        },
-        {
-          "id": 7,
-          "name": "olive"
         },
         {
           "id": 12,
@@ -144,16 +132,52 @@
       "name": "yesss",
       "toppings": [
         {
-          "id": 10,
-          "name": "pepperoni"
-        },
-        {
           "id": 6,
           "name": "mushroom"
         },
         {
+          "id": 5,
+          "name": "mozzarella"
+        },
+        {
+          "id": 12,
+          "name": "tomato"
+        },
+        {
+          "id": 8,
+          "name": "onion"
+        },
+        {
+          "id": 3,
+          "name": "basil"
+        },
+        {
+          "id": 11,
+          "name": "sweetcorn"
+        },
+        {
+          "id": 10,
+          "name": "pepperoni"
+        },
+        {
           "id": 2,
           "name": "bacon"
+        },
+        {
+          "id": 9,
+          "name": "pepper"
+        },
+        {
+          "id": 1,
+          "name": "anchovy"
+        },
+        {
+          "id": 7,
+          "name": "olive"
+        },
+        {
+          "id": 4,
+          "name": "chili"
         }
       ],
       "id": 8

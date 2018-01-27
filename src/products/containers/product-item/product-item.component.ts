@@ -14,6 +14,9 @@ import { RemovePizza } from '../../store';
 // when you pass it an observable it does this automatically. It also will unsubscribe so no ng on destroy is needed
 @Component({
   selector: 'product-item',
+  changeDetection: ChangeDetectionStrategy.OnPush, // now 100% of our app is change detection disabled. makes our app faster cause we are relying on the store
+  // using reducer to tell the app what to change and pulling the new values from the store via observable. not relying on angular change detection which makes things faster and easier to debug
+  // not relying on local component state being binded down from service
   styleUrls: ['product-item.component.scss'],
   template: `
     <div
@@ -89,5 +92,5 @@ export class ProductItemComponent implements OnInit {
   }
 }
 
-// the container aka this talks to the store and send data to the presentation componets (top level data flow) which then use Event Mitter to pass data up.
+// the container aka this talks to the store and send data to the presentation components (top level data flow) which then use Event Mitter to pass data up.
 // for container inputs are from select and outputs are from dispatch

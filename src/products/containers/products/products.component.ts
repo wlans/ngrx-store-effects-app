@@ -9,6 +9,9 @@ import * as fromStore from '../../store';
 
 @Component({
   selector: 'products',
+  changeDetection: ChangeDetectionStrategy.OnPush, // if using a service and binding something
+  // that is not an observable you would not have change detection.
+  //we are not using @Input put we get our data from an observable on ngOnInit
   styleUrls: ['products.component.scss'],
   template: `
     <div class="products">
