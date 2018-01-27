@@ -34,7 +34,7 @@ export class PizzasGuard implements CanActivate {
           // steam, so its almost like it was never there
         }
       }),
-      filter(loaded => loaded), // if loaded is false the stream will not continue... this is watching for the dispatch to finish
+      filter(loaded => loaded), // TODO not sure why we are doing thiss if loaded is false the stream will not continue... this is watching for the dispatch to finish
       take(1) // when loaded is true we do this TODO understand this and filter. take one value from filter
       // and cal observable complete which means the observable steam is
       // done and we can unsubscribe automatically
