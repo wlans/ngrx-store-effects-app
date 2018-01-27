@@ -37,6 +37,7 @@ export const ROUTES: Routes = [
   },
   {
     path: ':pizzaId', // does the : mean param ? TODO
+    canActivate: [fromGuards.PizzaExistsGuards],
     component: fromContainers.ProductItemComponent
   }
 ];
